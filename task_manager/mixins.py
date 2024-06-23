@@ -24,8 +24,11 @@ class UserPermissionMixin(UserPassesTestMixin):
 
     def test_func(self):
         user_id = self.kwargs['pk']
-        user = User.objects.get(id=user_id)
-        return user == self.request.user
+        try:
+            user = User.objects.get(id=user_id)
+            return user == self.request.user
+        except User.DoesNotExist:
+            return False
 
     def handle_no_permission(self):
         messages.error(self.request, self.permission_message)
@@ -47,6 +50,9 @@ class DeleteProtectionMixin(View):
 class AuthorDeletionMixin(UserPermissionMixin):
     author_message = _('You do not have permission to delete this item.')
     author_url = '/'
+
+    def test_func(self):
+        return self.get_object().author == self.request.user
 
     def handle_no_permission(self):
         messages.error(self.request, self.author_message)
