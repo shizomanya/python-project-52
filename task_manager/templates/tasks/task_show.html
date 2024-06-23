@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}
+    {{ task.name }} | {% trans 'Task Manager' %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="my-4">{{ title }}</h1>
+
+            <div class="card-header bg-secondary text-white">
+                <h2>{{ task.name }}</h2>
+            </div>
+
+            <div class="card-body bg-light">
+                <p>{{ task.description }}</p>
+
+                <hr>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row" style="width: 200px;">{% trans 'Author' %}</th>
+                                <td>{{ task.author }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{% trans 'Executor' %}</th>
+                                <td>{{ task.executor }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{% trans 'Status' %}</th>
+                                <td>{{ task.status }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{% trans 'Creation date' %}</th>
+                                <td>{{ task.date_created|date:"d.m.Y H:i" }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{% trans 'Labels' %}</th>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        {% for label in task.labels.all %}
+                                            <li>{{ label.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <a href="{% url 'task_update' task.id %}" class="btn btn-warning btn-sm">{% trans 'Update' %}</a>
+                                    <a href="{% url 'task_delete' task.id %}" class="btn btn-danger btn-sm ml-2">{% trans 'Delete' %}</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

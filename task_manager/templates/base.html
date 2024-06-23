@@ -1,0 +1,87 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% bootstrap_css %}
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ms-3">
+        <a class="navbar-brand" href="{% url 'home' %}">{% trans "Task manager" %}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users' %}">{% trans "Users" %}</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'statuses' %}">{% trans "Statuses" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'labels' %}">{% trans "Labels" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tasks' %}">{% trans "Tasks" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_update' user.id %}">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                            {% csrf_token %}
+                        </form>
+                        <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {% trans "Log Out" %}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">{% trans "Log In" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'sign_up' %}">{% trans "Sign Up" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+<main class="container wrapper flex-grow-1">
+    {% bootstrap_messages %}
+    {% block content %}{% endblock %}
+</main>
+<footer class="mt-auto">
+    <div class="container flex-column my-5 pt-4 border-top">
+        <div class="row justify-content-sm-center">
+            <div class="col-sm-auto">
+                <a target="_blank" href="https://github.com/shizomanya">shizomanya</a>
+            </div>
+            <div class="col-sm-auto">
+                <img class='ml-2' src="https://github.githubassets.com/favicons/favicon.svg" alt="GitHub" height="16px">
+            </div>
+            <div class="col-sm-auto">
+                <a target="_blank" href="https://github.com/shizomanya/python-project-lvl4.git">project</a>
+            </div>
+        </div>
+    </div>
+</footer>
+{% bootstrap_javascript %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkzeC6tHg7Lx3Oph5JgVRmWfDQ4tj1JO5pLVbPHZ7F1Bbar3bOKr" crossorigin="anonymous"></script>
+</body>
+</html>
