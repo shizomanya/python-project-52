@@ -3,6 +3,7 @@ from django.urls import reverse
 from task_manager.users.models import User
 from django.test import Client
 
+
 @pytest.fixture
 def user_data():
     return {
@@ -12,15 +13,23 @@ def user_data():
         'last_name': 'User',
     }
 
+
 @pytest.fixture
 def authenticated_user(client, user_data):
     user = User.objects.create_user(**user_data)
-    client.login(username=user_data['username'], password=user_data['password'])
+    client.login(
+        username=user_data['username'],
+        password=user_data['password']
+    )
     return user
+
 
 @pytest.fixture
 def test_user():
-    return User.objects.create_user(username='testuser2', password='testpassword2')
+    return User.objects.create_user(
+        username='testuser2',
+        password='testpassword2'
+    )
 
 
 @pytest.mark.django_db
@@ -33,7 +42,7 @@ def test_user_signup(client: Client):
         'username': 'testuser',
     }
 
-    assert User.objects.count() == 0    
+    assert User.objects.count() == 0
 
     signup_url = reverse('sign_up')
     response = client.post(signup_url, user_data)

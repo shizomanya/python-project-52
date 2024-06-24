@@ -102,7 +102,7 @@ def test_status_delete_in_use(authenticated_user):
         username='executor',
         password='executorpassword'
     )
-    test_task = Task.objects.create(
+    Task.objects.create(
         name='Test Task',
         status=test_status,
         author=test_user,

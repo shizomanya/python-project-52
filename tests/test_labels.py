@@ -1,10 +1,10 @@
 import pytest
 from django.urls import reverse
-from django.test import Client
 from task_manager.labels.models import Label
 from task_manager.users.models import User
 from task_manager.tasks.models import Task
 from task_manager.statuses.models import Status
+
 
 @pytest.fixture
 def user_data():
@@ -15,15 +15,24 @@ def user_data():
         'last_name': 'User',
     }
 
+
 @pytest.fixture
 def authenticated_user(client, user_data):
     user = User.objects.create_user(**user_data)
-    client.login(username=user_data['username'], password=user_data['password'])
+    client.login(
+        username=user_data['username'],
+        password=user_data['password']
+    )
     return user
+
 
 @pytest.fixture
 def test_user():
-    return User.objects.create_user(username='testuser2', password='testpassword2')
+    return User.objects.create_user(
+        username='testuser2',
+        password='testpassword2'
+    )
+
 
 @pytest.mark.django_db
 def test_label_create(client, authenticated_user):
@@ -38,10 +47,10 @@ def test_label_create(client, authenticated_user):
     response = client.post(reverse('label_create'), label_data)
     assert response.status_code == 302
 
-    # Проверяем, что метка была успешно создана в базе данных
     created_label = Label.objects.filter(name=label_data['name']).first()
     assert created_label is not None
     assert created_label.name == label_data['name']
+
 
 @pytest.mark.django_db
 def test_label_no_authenticate(client):
@@ -60,6 +69,7 @@ def test_label_no_authenticate(client):
     response = client.get(label_delete_url)
     assert response.status_code == 302
     assert response.url.startswith(reverse('login'))
+
 
 @pytest.mark.django_db
 def test_label_update(client, authenticated_user):
@@ -82,9 +92,9 @@ def test_label_update(client, authenticated_user):
     )
     assert response.status_code == 302
 
-    # Проверяем, что изменения были сохранены в базе данных
     updated_label = Label.objects.get(pk=test_label.pk)
     assert updated_label.name == updated_data['name']
+
 
 @pytest.mark.django_db
 def test_label_delete(client, authenticated_user):
@@ -104,9 +114,9 @@ def test_label_delete(client, authenticated_user):
     )
     assert response.status_code == 302
 
-    # Проверяем, что метка успешно удалена из базы данных
     deleted_label = Label.objects.filter(pk=test_label.pk).first()
     assert deleted_label is None
+
 
 @pytest.mark.django_db
 def test_label_delete_in_use(client, authenticated_user):
@@ -130,9 +140,7 @@ def test_label_delete_in_use(client, authenticated_user):
     assert response.status_code == 302
     assert response.url == reverse('labels')
 
-    # Проверяем, что метка по-прежнему существует в базе данных
     existing_label = Label.objects.filter(pk=test_label.pk).exists()
     assert existing_label
 
-    # Проверяем, что связанная задача все еще содержит эту метку
     assert test_label in test_task.labels.all()
