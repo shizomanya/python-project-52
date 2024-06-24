@@ -22,8 +22,13 @@ jobs:
           poetry install
           poetry add --dev pytest
 
+      - name: Set up Django settings module
+        run: |
+          export DJANGO_SETTINGS_MODULE=task_manager.settings
+
       - name: Run tests
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DJANGO_SETTINGS_MODULE: task_manager.settings
         run: |
           poetry run pytest
