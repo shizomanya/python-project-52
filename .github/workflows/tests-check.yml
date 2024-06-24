@@ -14,15 +14,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.10
+          python-version: 3.9
 
       - name: Install dependencies
         run: |
           pip install poetry
-          poetry install  # Installs dependencies including pytest
+          poetry install
 
       - name: Run tests
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
-          poetry run pytest  # Runs pytest within the Poetry-managed environment
+          poetry run pytest
