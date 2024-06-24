@@ -123,12 +123,15 @@ _It is also possible to start it local in development mode with debugger active 
 ```bash
 make dev
 ```
-_The dev server will be at http://127.0.0.1:5000._
+_The dev server will be at http://127.0.0.1:8000._
 
 ## How to use this App:
-1. **Registration** — First, you need to register in the application using the registration form provided;
-2. **Authentication** — To view the list of tasks and create new ones, you need to log in using the information from the registration form;
-3. **Users** — You can see the list of all registered users on the corresponding page. It is available without authorization. You can change or delete information only about yourself. If a user is the author or performer of a task, it cannot be deleted;
-4. **Statuses** — You can view, add, update, and delete task statuses if you are logged in. Statuses corresponding to any tasks cannot be deleted;
-5. **Tasks** — You can view, add, and update tasks if you are logged in. Only the task creator can delete tasks. You can also filter tasks on the corresponding page with specified statuses, performers, and labels;
-6. **Labels** — You can view, add, update, and delete task labels if you are logged in. Labels matching any tasks cannot be deleted.
+
+| Tool               | Description                                             
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Registration       | First, you need to register in the application using the registration form provided.                                                                                    |
+| Log in             | To view the list of tasks and create new ones, you need to log in using the information from the registration form.                                                     |
+| User               | You can see all users on the relevant page. You can change the information only about yourself. If the user is an author or an executor of the task he cannot be deleted|
+| Statuses           | You can add, update, delete statuses of the tasks, if you are logged in. The statuses which correspond with any tasks cannot be deleted.                                |
+| Labels             | You can add, update, delete labels of the tasks, if you are logged in. The label which correspond with any tasks cannot be deleted.                                     |
+| Tasks              | You can add, update, delete tasks, if you are logged in. You can also filter tasks on the relevant page with given statuses, exetutors and labels.                      |
