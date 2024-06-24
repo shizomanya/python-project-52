@@ -20,6 +20,7 @@ jobs:
         run: |
           pip install poetry
           poetry install
+          poetry add --dev pytest
 
       - name: Run tests
         env:
