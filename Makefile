@@ -7,7 +7,7 @@ test:
 
 test-coverage:
 	export DJANGO_SETTINGS_MODULE=task_manager.settings && \
-    poetry run pytest --cov=task_manager --cov-report xml
+    poetry run pytest --cov=task_manager --cov-report=xml
 
 install:
 	poetry install
