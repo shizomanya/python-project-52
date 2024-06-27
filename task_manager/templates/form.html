@@ -4,15 +4,81 @@
 {% load i18n %}
 
 {% block title %}
-    {{ title }} | {% translate 'Task Manager' %}
+    {% if request.resolver_match.url_name == 'task_create' %}
+        {% trans 'Create task' %} | {% trans 'Task Manager' %}
+    {% elif request.resolver_match.url_name == 'task_update' %}
+        {% trans 'Task change' %} | {% trans 'Task Manager' %}
+
+    {% elif request.resolver_match.url_name == 'status_create' %}
+        {% trans 'Create status' %} | {% trans 'Task Manager' %}
+    {% elif request.resolver_match.url_name == 'status_update' %}
+        {% trans 'Change status' %} | {% trans 'Task Manager' %}
+
+    {% elif request.resolver_match.url_name == 'label_create' %}
+        {% trans 'Create label' %} | {% trans 'Task Manager' %}
+    {% elif request.resolver_match.url_name == 'label_update' %}
+        {% trans 'Change label' %} | {% trans 'Task Manager' %}
+
+    {% elif request.resolver_match.url_name == 'user_create' %}
+        {% trans 'Create user' %} | {% trans 'Task Manager' %}
+    {% elif request.resolver_match.url_name == 'user_update' %}
+        {% trans 'Update user' %} | {% trans 'Task Manager' %}
+
+    {% elif request.resolver_match.url_name == 'login' %}
+        {% trans 'Login' %} | {% trans 'Task Manager' %}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-    <h1 class="my-4">{{ title }}</h1>
+    {% if request.resolver_match.url_name == 'task_create' %}
+        <h1 class="my-4">{% trans 'Create task' %}</h1>
+    {% elif request.resolver_match.url_name == 'task_update' %}
+        <h1 class="my-4">{% trans 'Task change' %}</h1>
+
+    {% elif request.resolver_match.url_name == 'status_create' %}
+        <h1 class="my-4">{% trans 'Create status' %}</h1>
+    {% elif request.resolver_match.url_name == 'status_update' %}
+        <h1 class="my-4">{% trans 'Change status' %}</h1>
+
+    {% elif request.resolver_match.url_name == 'label_create' %}
+        <h1 class="my-4">{% trans 'Create label' %}</h1>
+    {% elif request.resolver_match.url_name == 'label_update' %}
+        <h1 class="my-4">{% trans 'Change label' %}</h1>
+
+    {% elif request.resolver_match.url_name == 'user_create' %}
+        <h1 class="my-4">{% trans 'Create user' %}</h1>
+    {% elif request.resolver_match.url_name == 'user_update' %}
+        <h1 class="my-4">{% trans 'Update user' %}</h1>
+
+    {% elif request.resolver_match.url_name == 'login' %}
+        <h1 class="my-4">{% trans 'Login' %}</h1>
+    {% endif %}
 
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
+        {% if request.resolver_match.url_name == 'task_create' %}
+            {% bootstrap_button _('Create') button_type="submit" button_class="btn btn-primary" %}
+        {% elif request.resolver_match.url_name == 'task_update' %}
+            {% bootstrap_button _('Change') button_type="submit" button_class="btn btn-primary" %}
+
+        {% elif request.resolver_match.url_name == 'status_create' %}
+            {% bootstrap_button _('Create') button_type="submit" button_class="btn btn-primary" %}
+        {% elif request.resolver_match.url_name == 'status_update' %}
+            {% bootstrap_button _('Change') button_type="submit" button_class="btn btn-primary" %}
+
+        {% elif request.resolver_match.url_name == 'label_create' %}
+            {% bootstrap_button _('Create') button_type="submit" button_class="btn btn-primary" %}
+        {% elif request.resolver_match.url_name == 'label_update' %}
+            {% bootstrap_button _('Change') button_type="submit" button_class="btn btn-primary" %}
+
+        {% elif request.resolver_match.url_name == 'user_create' %}
+            {% bootstrap_button _('Register') button_type="submit" button_class="btn btn-primary" %}
+        {% elif request.resolver_match.url_name == 'user_update' %}
+            {% bootstrap_button _('Update') button_type="submit" button_class="btn btn-primary" %}
+
+        {% elif request.resolver_match.url_name == 'login' %}
+            {% bootstrap_button _('Enter') button_type="submit" button_class="btn btn-primary" %}
+        {% endif %}
     </form>
 {% endblock %}

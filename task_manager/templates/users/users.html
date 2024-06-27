@@ -3,13 +3,13 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
-{% block title %}{{ page_title }} | {% trans 'Task Manager' %}{% endblock %}
+{% block title %}{% trans 'Users' %} | {% trans 'Task Manager' %}{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <h1 class="my-4">{{ title }}</h1>
+            <h1 class="my-4">{% trans 'Users' %}</h1>
             <table class="table table-hover table-bordered">
                 <thead class="thead-light">
                     <tr>
@@ -44,4 +44,4 @@
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock %}

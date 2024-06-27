@@ -303,20 +303,6 @@ beautifulsoup4 = ">=4.8.0"
 Django = ">=4.1"
 
 [[package]]
-name = "django-bootstrap5"
-version = "24.2"
-description = "Bootstrap 5 for Django"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "django_bootstrap5-24.2-py3-none-any.whl", hash = "sha256:6a5d83e9ff1952f7c07c54cebcb76c85f09787b8b57eeb4ec07554cd583acc64"},
-    {file = "django_bootstrap5-24.2.tar.gz", hash = "sha256:a3cee2b3d45745210c5b898af2917f310f44df746269fe09a93be28a0adc2a4b"},
-]
-
-[package.dependencies]
-Django = ">=4.2"
-
-[[package]]
 name = "django-extensions"
 version = "3.2.3"
 description = "Extensions for Django"
@@ -945,4 +931,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bc9da182e4e5f87938c9d183342a38a5c279f9bd9c70b62f1c504dac13dc1b28"
+content-hash = "a641609dc0541ae6b816dab4d20c05723f073d10655204fc90b983b36ca6016f"

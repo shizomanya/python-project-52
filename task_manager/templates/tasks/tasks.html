@@ -4,11 +4,11 @@
 {% load i18n %}
 
 {% block title %}
-    {{ title }} | {% trans 'Task Manager' %}
+    {% trans 'Tasks' %} | {% trans 'Task Manager' %}
 {% endblock %}
 
 {% block content %}
-    <h1 class="my-4">{{ title }}</h1>
+    <h1 class="my-4">{% trans 'Tasks' %}</h1>
 
     <div class="mb-3">
         <a class="btn btn-primary" href="{% url 'task_create' %}">{% trans 'Create task' %}</a>
@@ -17,7 +17,7 @@
         <div class="card-body bg-light">
             <form class="form-inline center mb-3" method="get">
                 {% bootstrap_form filter.form field_class="ml-2 mr-3" %}
-                {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
+                {% bootstrap_button _('Show') button_type="submit" button_class="btn btn-primary" %}
             </form>
 
             <div class="table-responsive">
@@ -60,4 +60,4 @@
             </div>
         </div>
     </div>
-{% endblock content %}
+{% endblock %}
