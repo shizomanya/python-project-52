@@ -1,14 +1,15 @@
+MANAGE := poetry run python manage.py
 lint:
 	poetry run flake8 task_manager
 
 test:
-	poetry run python manage.py test
+	poetry run coverage run manage.py test .test
+
 
 test-coverage:
-	poetry run python manage.py check --deploy
-	poetry run coverage run manage.py test
-	poetry run coverage report -m --include=task_manager/* --omit=task_manager/settings.py
-	poetry run coverage xml --include=task_manager/* --omit=task_manager/settings.py
+	make test
+	poetry run coverage xml
+	poetry run coverage report
 
 install:
 	poetry install

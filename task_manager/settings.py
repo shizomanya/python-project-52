@@ -75,6 +75,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'task_manager.urls'
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 TEMPLATES = [
     {
