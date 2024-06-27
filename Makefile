@@ -9,8 +9,8 @@ test-coverage:
 	poetry run coverage xml
 	poetry run coverage report
 
-install:
-	poetry install
+setup:
+    poetry install
 
 selfcheck:
 	poetry check
