@@ -2,15 +2,18 @@ lint:
 	poetry run flake8 task_manager
 
 test:
-	poetry run coverage run --source=task_manager manage.py test
+	export DJANGO_SETTINGS_MODULE=task_manager.settings && \
+    poetry run pytest
 
 test-coverage:
-	poetry run coverage run manage.py test
-	poetry run coverage xml
-	poetry run coverage report
+	export DJANGO_SETTINGS_MODULE=task_manager.settings && \
+    poetry run pytest --cov=task_manager --cov-report xml
 
-setup:
-    poetry install
+install:
+	poetry install
+
+build:
+	poetry build
 
 selfcheck:
 	poetry check

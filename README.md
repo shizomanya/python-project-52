@@ -7,7 +7,6 @@
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/shizomanya/python-project-lvl4/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/shizomanya/python-project-lvl4/actions)
-[![Test Check](https://github.com/shizomanya/python-project-lvl4/actions/workflows/tests-check.yml/badge.svg)](https://github.com/shizomanya/python-project-lvl4/actions/workflows/tests-check.yml)
 [![Python CI](https://github.com/shizomanya/python-project-lvl4/actions/workflows/ci.yml/badge.svg)](https://github.com/shizomanya/python-project-lvl4/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b1461bbe9c019ff68bd1/maintainability)](https://codeclimate.com/github/shizomanya/python-project-lvl4/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b1461bbe9c019ff68bd1/test_coverage)](https://codeclimate.com/github/shizomanya/python-project-lvl4/test_coverage)
