@@ -25,7 +25,7 @@ jobs:
           poetry run flake8 task_manager
       - name: Run tests
         run: |
-          poetry run pytest
+          DJANGO_SETTINGS_MODULE=task_manager.settings poetry run pytest
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         if: github.ref_name == 'main'

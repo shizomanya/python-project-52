@@ -19,7 +19,7 @@
     {% elif request.resolver_match.url_name == 'label_update' %}
         {% trans 'Change label' %} | {% trans 'Task Manager' %}
 
-    {% elif request.resolver_match.url_name == 'user_create' %}
+    {% elif request.resolver_match.url_name == 'sign_up' %}
         {% trans 'Create user' %} | {% trans 'Task Manager' %}
     {% elif request.resolver_match.url_name == 'user_update' %}
         {% trans 'Update user' %} | {% trans 'Task Manager' %}
@@ -45,7 +45,7 @@
     {% elif request.resolver_match.url_name == 'label_update' %}
         <h1 class="my-4">{% trans 'Change label' %}</h1>
 
-    {% elif request.resolver_match.url_name == 'user_create' %}
+    {% elif request.resolver_match.url_name == 'sign_up' %}
         <h1 class="my-4">{% trans 'Create user' %}</h1>
     {% elif request.resolver_match.url_name == 'user_update' %}
         <h1 class="my-4">{% trans 'Update user' %}</h1>
@@ -72,7 +72,7 @@
         {% elif request.resolver_match.url_name == 'label_update' %}
             {% bootstrap_button _('Change') button_type="submit" button_class="btn btn-primary" %}
 
-        {% elif request.resolver_match.url_name == 'user_create' %}
+        {% elif request.resolver_match.url_name == 'sign_up' %}
             {% bootstrap_button _('Register') button_type="submit" button_class="btn btn-primary" %}
         {% elif request.resolver_match.url_name == 'user_update' %}
             {% bootstrap_button _('Update') button_type="submit" button_class="btn btn-primary" %}
