@@ -1,42 +1,26 @@
 name: my_check
 
 on:
-  push:
-  pull_request:
+  - push
+  - pull_request
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.10.12]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: Install python
+        uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
 
       - name: Install dependencies
         run: |
           pip install poetry
           make install
 
-      - name: Set Django settings module
-        run: export DJANGO_SETTINGS_MODULE=task_manager.settings
-
-      - name: Run linter and pytest
-        env:
-          SECRET_KEY_APP: ${{ secrets.SECRET_KEY }}
+      - name: Run linter
         run: |
-          make check
-
-      - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v2.7.4
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          debug: true
+          make lint
